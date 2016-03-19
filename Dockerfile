@@ -78,7 +78,7 @@ RUN \
       --with-readline \
       --with-xmlrpc \
       --with-pear \
-  && make \
+  && make -j"$(getconf _NPROCESSORS_ONLN)" \
   && make install \
   && make clean \
   && strip -s /usr/bin/php \
