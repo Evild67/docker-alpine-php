@@ -91,7 +91,9 @@ RUN \
   && rm -rf /tmp/* \
   && rm -rf /var/www/* \
   && rm -rf /usr/src/* \
-  && adduser -D www-data
+  && addgroup -g 82 -S www-data \
+  && adduser -u 82 -D -S -G www-data www-data
+  
 ADD root /
 
 EXPOSE 9000
