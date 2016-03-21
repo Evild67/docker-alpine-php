@@ -1,4 +1,4 @@
-FROM evild/alpine-base:1.0.0
+FROM evild/alpine-base:edge
 MAINTAINER Dominique HAAS <contact@dominique-haas.fr>
 
 ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
@@ -93,7 +93,7 @@ RUN \
   && rm -rf /usr/src/* \
   && addgroup -g 82 -S www-data \
   && adduser -u 82 -D -S -G www-data www-data
-  
+
 ADD root /
 
 EXPOSE 9000
