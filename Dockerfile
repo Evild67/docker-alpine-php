@@ -73,9 +73,6 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	&& apk add --virtual .php-rundeps $runDeps \
 	&& apk del .build-deps
 
-COPY docker-php-ext-* /usr/local/bin/
-
-
 WORKDIR /var/www/html
 
 ADD root /
