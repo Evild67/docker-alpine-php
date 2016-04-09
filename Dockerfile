@@ -19,7 +19,7 @@ RUN apk add --no-cache --virtual .phpize-deps \
 		make \
 		pkgconf \
 		re2c \
-    apk add --no-cache --virtual .persistent-deps \
+    && apk add --no-cache --virtual .persistent-deps \
 		ca-certificates \
 		curl
 
