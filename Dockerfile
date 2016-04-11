@@ -49,7 +49,6 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	&& rm "$PHP_FILENAME" \
 	&& cd /usr/src/php \
 	&& ./configure \
-		--prefix=/usr \
 		--with-config-file-path="$PHP_INI_DIR" \
 		--with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
 		$PHP_EXTRA_CONFIGURE_ARGS \
@@ -64,7 +63,6 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	&& make install \
 	&& { find /usr/local/bin /usr/local/sbin -type f -perm +0111 -exec strip --strip-all '{}' + || true; } \
 	&& make clean \
-	&& strip -s /usr/bin/php \
 	&& runDeps="$( \
 		scanelf --needed --nobanner --recursive /usr/local \
 			| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
@@ -74,7 +72,7 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	)" \
 	&& apk add --virtual .php-rundeps $runDeps \
 	&& apk del .build-deps \
-	&& rm -rf /var/cache/apk/* /tmp/* /var/www/* /usr/src/*
+	&& rm -rf /var/cache/apk/* /tmp/*
 
 WORKDIR /var/www/html
 
