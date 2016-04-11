@@ -73,7 +73,7 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 			| sort -u \
 	)" \
 	&& apk add --virtual .php-rundeps $runDeps \
-	&& apk del .build-deps
+	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/* /tmp/* /var/www/* /usr/src/*
 
 WORKDIR /var/www/html
