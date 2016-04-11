@@ -2,12 +2,12 @@ FROM evild/alpine-base:latest
 MAINTAINER Dominique HAAS <contact@dominique-haas.fr>
 
 
-ENV PHP_INI_DIR /usr/local/etc/php
-ENV PHP_EXTRA_CONFIGURE_ARGS --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data
-ENV GPG_KEYS 1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
-ENV PHP_VERSION 7.0.5
-ENV PHP_FILENAME php-7.0.5.tar.xz
-ENV PHP_SHA256 c41f1a03c24119c0dd9b741cdb67880486e64349fc33527767f6dc28d3803abb
+ARG PHP_INI_DIR=/usr/local/etc/php
+ARG PHP_EXTRA_CONFIGURE_ARGS="--enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data"
+ARG GPG_KEYS=1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
+ARG PHP_VERSION=7.0.5
+ARG PHP_FILENAME=php-7.0.5.tar.xz
+ARG PHP_SHA256=c41f1a03c24119c0dd9b741cdb67880486e64349fc33527767f6dc28d3803abb
 
 
 RUN apk add --no-cache --virtual .phpize-deps \
@@ -49,6 +49,7 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	&& rm "$PHP_FILENAME" \
 	&& cd /usr/src/php \
 	&& ./configure \
+		--prefix=/usr \
 		--with-config-file-path="$PHP_INI_DIR" \
 		--with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
 		$PHP_EXTRA_CONFIGURE_ARGS \
@@ -63,6 +64,7 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	&& make install \
 	&& { find /usr/local/bin /usr/local/sbin -type f -perm +0111 -exec strip --strip-all '{}' + || true; } \
 	&& make clean \
+	&& strip -s /usr/bin/php \
 	&& runDeps="$( \
 		scanelf --needed --nobanner --recursive /usr/local \
 			| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
@@ -72,6 +74,7 @@ RUN mkdir -p $PHP_INI_DIR/conf.d \
 	)" \
 	&& apk add --virtual .php-rundeps $runDeps \
 	&& apk del .build-deps
+	&& rm -rf /var/cache/apk/* /tmp/* /var/www/* /usr/src/*
 
 WORKDIR /var/www/html
 
