@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+  - cleanup
+  - deploy
+
+
+build_job:
+  stage: build
+  script:
+    - ci/php_build
+
+test_job:
+  stage: test
+  script:
+    - ci/php_test
+
+cleanup:
+  stage: cleanup
+  script:
+    - ci/php_cleanup
+  when: always
+
+deploy_job:
+  stage: deploy
+  script:
+    - ci/php_deploy

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+docker --version
+
+docker build -t evild/alpine-php:7 7
+docker inspect evild/alpine-php:7
