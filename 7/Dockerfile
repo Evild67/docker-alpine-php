@@ -5,9 +5,9 @@ MAINTAINER Dominique HAAS <contact@dominique-haas.fr>
 ARG PHP_INI_DIR=/usr/local/etc/php
 ARG PHP_EXTRA_CONFIGURE_ARGS="--enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data"
 ARG GPG_KEYS=1A4E8B7277C42E53DBA9C7B9BCAA30EA9C0D5763
-ARG PHP_VERSION=7.0.5
-ARG PHP_FILENAME=php-7.0.5.tar.xz
-ARG PHP_SHA256=c41f1a03c24119c0dd9b741cdb67880486e64349fc33527767f6dc28d3803abb
+ARG PHP_VERSION=7.0.6
+ARG PHP_FILENAME=php-7.0.6.tar.xz
+ARG PHP_SHA256=1b237a9455e5476a425dbb9d99966bad68107747c601958cb9558a7fb49ab419
 
 
 RUN apk add --no-cache --virtual .phpize-deps \
