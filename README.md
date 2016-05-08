@@ -7,7 +7,7 @@
 This image is based on [evild/alpine-base](https://hub.docker.com/r/evild/alpine-base/)
 
 ## Version
-- `7.0.6`, `latest` [(Dockerfile)](https://github.com/Evild67/docker-alpine-php/blob/630f237bdaf0380f86f54de5027345742148b230/7/Dockerfile)
+- `7.0.6`, `latest` [(Dockerfile)](https://github.com/Evild67/docker-alpine-php/blob/113c5d9954b189c969e317c2a9a519b52d5caa96/7/Dockerfile)
 - `7.0.5` [(Dockerfile)](https://github.com/Evild67/docker-alpine-php/blob/05d713dbe7649ac10209c1e1efc98279b49b5ffd/Dockerfile)
 - `7.0.4` [(Dockerfile)](https://github.com/Evild67/docker-alpine-php/blob/master/Dockerfile)
 
