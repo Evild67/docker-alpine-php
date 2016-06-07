@@ -1,18 +1,14 @@
 stages:
-  - build
   - test
   - cleanup
   - tweet
   - deploy
-
-build_job:
-  stage: build
-  script:
-    - ci/php_build
+  - upload
 
 test_job:
   stage: test
   script:
+    - ci/php_build
     - ci/php_test
 
 cleanup:
@@ -43,7 +39,7 @@ tweet_failed_job:
   script:
     - ci/php_tweet
   when: on_failure
-
+  
 deploy_job:
   stage: deploy
   only:
@@ -52,3 +48,19 @@ deploy_job:
     - master
   script:
     - ci/php_deploy
+
+
+upload_job_default:
+  stage: upload
+  only:
+    - master
+    - triggers
+  script:
+    - ci/php_upload_default
+
+upload_job_tag:
+  stage: upload
+  only:
+    - tag
+  script:
+    - ci/php_upload_tag
