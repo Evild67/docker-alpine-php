@@ -1,4 +1,5 @@
 FROM evild/alpine-base:latest
+FROM evild/alpine-base:3.0.0
 MAINTAINER Dominique HAAS <contact@dominique-haas.fr>
 
 
