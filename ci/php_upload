@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+docker tag evild/alpine-php:7 evild/alpine-php:latest
+docker push evild/alpine-php:latest
