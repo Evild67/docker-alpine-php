@@ -39,7 +39,7 @@ tweet_failed_job:
   script:
     - ci/php_tweet
   when: on_failure
-  
+
 deploy_job:
   stage: deploy
   only:
@@ -61,6 +61,6 @@ upload_job_default:
 upload_job_tag:
   stage: upload
   only:
-    - tag
+    - tags
   script:
     - ci/php_upload_tag

@@ -1,5 +1,5 @@
 #!/bin/sh
 set -e
-
+docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASSWORD
 docker tag evild/alpine-php:7 evild/alpine-php:$CI_BUILD_REF_NAME
 docker push evild/alpine-php:$CI_BUILD_REF_NAME
