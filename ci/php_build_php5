@@ -4,6 +4,6 @@ set -e
 
 docker --version
 
-docker build -t evild/alpine-php:5 5
+docker build -t evild/alpine-php:5 5.5
 docker inspect evild/alpine-php:5
 
