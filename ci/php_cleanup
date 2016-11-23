@@ -2,4 +2,6 @@
 
 set -e
 
+docker rm -f php-5
 docker rm -f php-7
+

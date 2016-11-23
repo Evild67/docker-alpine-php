@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+docker run -d --name php-5 evild/alpine-php:5
+docker ps | grep php-5

@@ -5,11 +5,18 @@ stages:
   - deploy
   - upload
 
-test_job:
+
+test_job_php5:
   stage: test
   script:
-    - ci/php_build
-    - ci/php_test
+    - ci/php_build_php5
+    - ci/php_test_php5
+
+test_job_php7:
+  stage: test
+  script:
+    - ci/php_build_php7
+    - ci/php_test_php7
 
 cleanup:
   stage: cleanup
